@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: rc-tank-license
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn server:app
+    envVars:
+      - key: ADMIN_SECRET
+        value: kisasati7345RcTank_2026V1
+      - key: DB_PATH
+        value: /data/licenses.db
+    disks:
+      - name: data
+        mountPath: /data
+        sizeGB: 1
